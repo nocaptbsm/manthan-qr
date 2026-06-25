@@ -45,7 +45,7 @@ export default function ScanPage() {
   const handleScan = async (token: string) => {
     setLoading(true);
     try {
-      const res = await api.attendance.mark(token);
+      const res = await api.attendance.mark(token) as any;
       setResult('success');
       setMessage(`Attendance marked successfully as ${res.data.status}!`);
       toast.success('Attendance Marked!');

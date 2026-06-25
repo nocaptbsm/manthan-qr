@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
-import { Cpu, RefreshCw, PowerOff, Shield, Smartphone } from 'lucide-react';
+import { Cpu, RefreshCw, PowerOff, Shield, Smartphone, Calendar } from 'lucide-react';
+import { format } from 'date-fns';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';

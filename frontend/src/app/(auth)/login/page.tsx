@@ -9,7 +9,9 @@ import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { api } from '@/lib/api';
 
-export default function LoginPage() {
+import { Suspense } from 'react';
+
+function LoginContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -30,7 +32,7 @@ export default function LoginPage() {
       const response = await api.auth.login(email, password);
       toast.success('Login successful!');
       
-      const role = response.data?.user?.role;
+      const role = (response.data as any)?.user?.role;
       if (redirectPath) {
         router.push(redirectPath);
       } else if (role === 'super_admin') {
@@ -102,5 +104,13 @@ export default function LoginPage() {
         </Link>
       </div>
     </>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }
